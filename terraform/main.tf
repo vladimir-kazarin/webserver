@@ -30,3 +30,9 @@ resource "google_compute_instance_group_manager" "default" {
   target_size = 2
 
 }
+
+resource "google_storage_bucket" "image-store" {
+  project  = "comp698-vak1003"
+  name     = "ilikebruins"
+  location = "us-central1"
+}
