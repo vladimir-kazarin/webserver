@@ -11,12 +11,20 @@ provider "google" {
 
 resource "google_compute_instance_template" "tf-server" {
   name = "tf-server"
+  project = "comp698-vak1003"
   disk {
-    image = "cos-stable-64-10176-62-0"
+    source_image = "cos-cloud/cos-stable"
+  }
+  machine_type = "n1-standard-1"
+  network_interface {
+    network = "default"
   }
 }
 
 resource "google_compute_instance_group_manager" "default" {
+  name = "tf-manager"
+  project = "comp698-vak1003"
+  zone = "us-central1-f"
   base_instance_name = "app"
   instance_template  = "${google_compute_instance_template.tf-server.self_link}"
   target_size = 2
