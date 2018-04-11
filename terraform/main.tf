@@ -9,10 +9,10 @@ provider "google" {
   region = "us-central1"
 }
 
-resource "google_compute_instance_template" "default" {
+resource "google_compute_instance_template" "tf-server" {
   name = "tf-server"
   disk {
-    image = "cos-stable"
+    image = "cos-stable-64-10176-62-0"
   }
 }
 
