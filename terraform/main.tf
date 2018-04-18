@@ -19,6 +19,18 @@ resource "google_compute_instance_template" "tf-server" {
   network_interface {
     network = "default"
   }
+
+  metadata {
+      gce-container-declaration = <<EOF
+  spec:
+    containers:
+    - image: 'gcr.io/comp698-vak1003/github-vladimir-kazarin-webserver:7e0540af2209c55e94bc3ec7ca1cd8cd2eed66dd'
+      name: service-container
+      stdin: false
+      tty: false
+    restartPolicy: Always
+  EOF
+  }
 }
 
 resource "google_compute_instance_group_manager" "default" {
